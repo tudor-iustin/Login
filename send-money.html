@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Bani - UniCredit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <a href="add-recipient.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Transfer Bani</h1>
+        </header>
+
+        <form class="transfer-form" id="transferForm">
+            <div class="form-group">
+                <label for="amount">Sumă</label>
+                <div class="amount-input">
+                    <input type="number" id="amount" required step="0.01">
+                    <span class="currency">EUR</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="details">Detalii Transfer (opțional)</label>
+                <input type="text" id="details">
+            </div>
+
+            <div class="confirmation-message" id="confirmationMessage" style="display: none;">
+                Transferul a fost efectuat cu succes!
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="cancel-btn" onclick="window.location.href='index.html'">Anulează</button>
+                <button type="submit" class="submit-btn">Trimite</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('transferForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            confirmationMessage.style.display = 'block';
+            
+            // Redirect to index after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html> 

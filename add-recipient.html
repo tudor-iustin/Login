@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaugă Beneficiar - UniCredit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <a href="transfer.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Adaugă Beneficiar</h1>
+        </header>
+
+        <form class="recipient-form" action="send-money.html">
+            <div class="form-group">
+                <label for="firstName">Prenume</label>
+                <input type="text" id="firstName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Nume</label>
+                <input type="text" id="lastName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="iban">IBAN</label>
+                <input type="text" id="iban" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="currency">Monedă</label>
+                <select id="currency" required>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="RON">Lei (RON)</option>
+                    <option value="USD">Dolar SUA (USD)</option>
+                    <option value="GBP">Liră sterlină (GBP)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Adaugă Beneficiar</button>
+        </form>
+    </div>
+</body>
+</html> 
