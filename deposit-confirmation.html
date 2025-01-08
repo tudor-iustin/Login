@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmare Depozit - UniCredit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <h1>Confirmare Depozit</h1>
+        </header>
+
+        <div class="confirmation-container">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h2>Depozit Înregistrat cu Succes</h2>
+            
+            <div class="deposit-summary">
+                <div class="summary-row">
+                    <span>Sumă Depozit:</span>
+                    <span id="confirmAmount">€0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Durată:</span>
+                    <span id="confirmDuration">0 luni</span>
+                </div>
+            </div>
+
+            <div class="approval-notice">
+                Depozitul dumneavoastră va fi aprobat în termen de 2-3 zile lucrătoare.
+            </div>
+
+            <button class="wide-button" onclick="window.location.href='accounts.html'">
+                <i class="fas fa-home"></i> Înapoi la Pagina Principală
+            </button>
+        </div>
+
+        <footer class="app-footer">
+            <p>© 2024-2025 UniCredit Bank Europe</p>
+        </footer>
+    </div>
+
+    <script>
+        // Display deposit details from localStorage
+        const amount = parseFloat(localStorage.getItem('depositAmount')) || 0;
+        const duration = localStorage.getItem('depositDuration') || '0';
+        
+        document.getElementById('confirmAmount').textContent = '€' + amount.toFixed(2);
+        document.getElementById('confirmDuration').textContent = duration + ' luni';
+    </script>
+</body>
+</html> 
