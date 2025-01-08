@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniCredit Mobile Banking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <img src="logo.png" alt="UniCredit">
+            </div>
+            <div class="header-actions">
+                <a href="notifications.html" class="notifications">
+                    <i class="fas fa-bell" style="color: var(--unicredit-red); font-size: 1.8rem;"></i>
+                </a>
+                <a href="profile.html" class="profile">
+                    <i class="fas fa-user-circle" style="color: var(--unicredit-red); font-size: 1.8rem;"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Balance Card -->
+        <section class="balance-card" id="balanceCard" onclick="window.location.href='transactions.html'">
+            <h2>Sold Curent</h2>
+            <div class="balance-amount" id="balanceDisplay">€11,036.98</div>
+            <div class="account-number">
+                IBAN: IT60X0542811101000000123456
+                <button class="share-btn"><i class="fas fa-share-alt"></i></button>
+            </div>
+        </section>
+
+        <section class="quick-actions">
+            <a href="transfer.html" class="action-btn">
+                <i class="fas fa-exchange-alt"></i>Transfer
+            </a>
+            <a href="cards.html" class="action-btn">
+                <i class="fas fa-credit-card"></i>Carduri
+            </a>
+            <a href="bills.html" class="action-btn">
+                <i class="fas fa-file-invoice"></i>Facturi
+            </a>
+            <a href="depozite.html" class="action-btn">
+                <i class="fas fa-money-bill-wave"></i>Depozite
+            </a>
+            <a href="more.html" class="action-btn">
+                <i class="fas fa-ellipsis-h"></i>Mai Mult
+            </a>
+        </section>
+
+        <!-- Credit Card Section -->
+        <div class="card">
+            <div class="card-content">
+                <img src="logo.png" alt="UniCredit" class="card-logo">
+                <div class="card-number">**** **** **** 8950</div>
+                <div class="card-holder">SIMINA GHINET-TUDOR</div>
+                <div class="card-expiry">10/26</div>
+                <img src="visa.png" alt="Visa" class="visa-logo">
+            </div>
+        </div>
+
+        <section class="deposit-card">
+            <h3>Depozite</h3>
+            <br></br>
+            <div id="depositsContainer">
+                <!-- Existing deposit -->
+                <div class="deposit-details">
+                    <h4>Depozit la Termen</h4>
+                    <div class="detail-row">
+                        <span>Depozit Inițial</span>
+                        <span>€10.000</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Data Cererii</span>
+                        <span>28 Nov 2023</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Depozit Aprobat</span>
+                        <span>01 Dec 2023</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Data Expirării</span>
+                        <span>8 Ian 2025</span>
+                    </div>
+                    <div class="detail-row highlight">
+                        <span>Status Depozit</span>
+                        <span>Expirat</span>
+                    </div>
+                </div>
+
+                <!-- New deposits will be added here -->
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <p>© 2024-2025 UniCredit Bank Europe</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update balance display
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedBalance = localStorage.getItem('currentBalance');
+            if (savedBalance) {
+                document.getElementById('balanceDisplay').textContent = 
+                    '€' + parseFloat(savedBalance).toFixed(2);
+            }
+
+            // Display new deposits
+            const deposits = JSON.parse(localStorage.getItem('deposits') || '[]');
+            const container = document.getElementById('depositsContainer');
+
+            deposits.forEach(deposit => {
+                const depositElement = document.createElement('div');
+                depositElement.className = 'deposit-details new-deposit';
+                
+                const currentDate = new Date();
+                const approvalDate = new Date(currentDate.getTime() + (3 * 24 * 60 * 60 * 1000));
+                const maturityDate = new Date(currentDate.getTime() + (deposit.duration * 30 * 24 * 60 * 60 * 1000));
+
+                depositElement.innerHTML = `
+                    <div class="deposit-separator"></div>
+                    <h4>Depozit la Termen</h4>
+                    <div class="detail-row">
+                        <span>Depozit Inițial</span>
+                        <span>€${deposit.amount.toFixed(2)}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Data Cererii</span>
+                        <span>${currentDate.toLocaleDateString('ro-RO')}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Aprobare Estimată</span>
+                        <span>${approvalDate.toLocaleDateString('ro-RO')}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Data Maturității</span>
+                        <span>${maturityDate.toLocaleDateString('ro-RO')}</span>
+                    </div>
+                    <div class="detail-row highlight">
+                        <span>Status Depozit</span>
+                        <span>În Așteptare</span>
+                    </div>
+                `;
+
+                container.appendChild(depositElement);
+            });
+        });
+    </script>
+</body>
+</html> 

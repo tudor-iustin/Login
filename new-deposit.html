@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deschide Depozit Nou - UniCredit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <a href="depozite.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Deschide Depozit Nou</h1>
+        </header>
+
+        <form class="new-deposit-form" id="newDepositForm">
+            <div class="form-group">
+                <label for="amount">Sumă Depozit (EUR)</label>
+                <div class="amount-input">
+                    <input type="number" id="amount" required min="1000" step="100">
+                    <span class="currency">EUR</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Durată Depozit</label>
+                <select id="duration" required>
+                    <option value="6">6 luni</option>
+                    <option value="12">12 luni</option>
+                    <option value="18">18 luni</option>
+                    <option value="24">24 luni</option>
+                </select>
+            </div>
+
+            <div class="deposit-info">
+                <div class="info-row">
+                    <span>Dobândă Anuală (DAE)</span>
+                    <span>9.12%</span>
+                </div>
+                <div class="info-row">
+                    <span>Dobândă Acumulată</span>
+                    <span id="interestAmount">€0.00</span>
+                </div>
+                <div class="info-row total">
+                    <span>Total la Maturitate</span>
+                    <span id="totalAmount">€0.00</span>
+                </div>
+            </div>
+
+            <div class="terms-section">
+                <p class="terms-text">
+                    Prin deschiderea acestui depozit, confirm că am citit și sunt de acord cu 
+                    <a href="#">termenii și condițiile</a> UniCredit Bank.
+                </p>
+            </div>
+
+            <button type="submit" class="submit-btn">Deschide Depozit</button>
+        </form>
+    </div>
+
+    <script>
+        function calculateInterest() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const months = parseInt(document.getElementById('duration').value);
+            const annualRate = 0.0912; // 9.12%
+            
+            const interest = amount * (annualRate * months / 12);
+            const total = amount + interest;
+            
+            document.getElementById('interestAmount').textContent = 
+                '€' + interest.toFixed(2);
+            document.getElementById('totalAmount').textContent = 
+                '€' + total.toFixed(2);
+        }
+
+        document.getElementById('amount').addEventListener('input', calculateInterest);
+        document.getElementById('duration').addEventListener('change', calculateInterest);
+
+        document.getElementById('newDepositForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const depositAmount = parseFloat(document.getElementById('amount').value);
+            const depositDuration = parseInt(document.getElementById('duration').value);
+            
+            // Update balance
+            const currentBalance = parseFloat(localStorage.getItem('currentBalance')) || 11036.98;
+            const newBalance = currentBalance - depositAmount;
+            localStorage.setItem('currentBalance', newBalance);
+            
+            // Store deposit details
+            const deposits = JSON.parse(localStorage.getItem('deposits') || '[]');
+            deposits.push({
+                amount: depositAmount,
+                duration: depositDuration,
+                dateCreated: new Date().toISOString()
+            });
+            localStorage.setItem('deposits', JSON.stringify(deposits));
+            
+            // Store details for confirmation page
+            localStorage.setItem('depositAmount', depositAmount);
+            localStorage.setItem('depositDuration', depositDuration);
+            
+            // Redirect to confirmation page
+            window.location.href = 'deposit-confirmation.html';
+        });
+    </script>
+</body>
+</html> 

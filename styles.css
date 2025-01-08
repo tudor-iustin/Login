@@ -1330,3 +1330,107 @@ section {
     text-align: center;
     margin: 20px 0;
 } 
+
+/* New Deposit Form Styles */
+.new-deposit-form {
+    padding: 20px;
+}
+
+.deposit-info {
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row.total {
+    font-weight: bold;
+    color: var(--unicredit-red);
+    font-size: 1.1rem;
+}
+
+.terms-section {
+    margin: 20px 0;
+}
+
+.terms-text {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.terms-text a {
+    color: var(--unicredit-red);
+    text-decoration: none;
+} 
+
+/* Confirmation Page Styles */
+.confirmation-container {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.confirmation-icon {
+    color: var(--unicredit-red);
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.confirmation-container h2 {
+    color: var(--dark-gray);
+    margin-bottom: 30px;
+}
+
+.deposit-summary {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: var(--shadow);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.approval-notice {
+    color: var(--unicredit-red);
+    padding: 15px;
+    margin: 20px 0;
+    font-weight: 500;
+    line-height: 1.4;
+} 
+
+/* Deposit card styles update */
+.deposit-separator {
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+.new-deposit {
+    margin-top: 20px;
+}
+
+#depositsContainer .deposit-details:not(:first-child) {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+} 
