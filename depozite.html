@@ -17,6 +17,76 @@
         </header>
 
         <section class="deposit-section">
+            <h2>Depozite Active</h2>
+            
+            <div class="deposit-card">
+                <h3>Depozit la Termen</h3>
+                <div class="deposit-details">
+                    <div class="detail-row">
+                        <span>Depozit Inițial</span>
+                        <span>€6000</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Data Cererii</span>
+                        <span>21 Ian 2025</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Depozit Aprobat</span>
+                        <span>25 Ian 2025</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Data Expirării</span>
+                        <span>25 Ian 2026</span>
+                    </div>
+                    <div class="detail-row highlight">
+                        <span>Status Depozit</span>
+                        <span style="color: #28a745;">Activ</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Dobânda Acumulată</span>
+                        <span>800 EUR</span>
+                    </div>
+                </div>
+                <button class="break-deposit-btn" onclick="showBreakDepositModal('6000', '800')">
+                    <i class="fas fa-exclamation-triangle"></i> Sparge Depozit
+                </button>
+            </div>
+
+            <div class="deposit-card">
+                <h3>Depozit la Termen</h3>
+                <div class="deposit-details">
+                    <div class="detail-row">
+                        <span>Depozit Inițial</span>
+                        <span>€5000</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Data Cererii</span>
+                        <span>21 Ian 2025</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Depozit Aprobat</span>
+                        <span>25 Ian 2025</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Data Expirării</span>
+                        <span>25 Ian 2026</span>
+                    </div>
+                    <div class="detail-row highlight">
+                        <span>Status Depozit</span>
+                        <span style="color: #28a745;">Activ</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Dobânda Acumulată</span>
+                        <span>600 EUR</span>
+                    </div>
+                </div>
+                <button class="break-deposit-btn" onclick="showBreakDepositModal('5000', '600')">
+                    <i class="fas fa-exclamation-triangle"></i> Sparge Depozit
+                </button>
+            </div>
+        </section>
+
+        <section class="deposit-section">
             <h2>Depozite Anterioare</h2>
             
             <div class="deposit-card">
@@ -56,5 +126,138 @@
             <p>© 2024-2025 UniCredit Bank Europe</p>
         </footer>
     </div>
+
+    <!-- Break Deposit Warning Modal -->
+    <div id="breakDepositModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: var(--unicredit-red); margin-bottom: 20px;">
+                <i class="fas fa-exclamation-triangle"></i> Atenție
+            </h3>
+            <p style="margin-bottom: 20px; line-height: 1.5;">
+                Aceasta actiune este iremediabila, daca decideti sa spargeti depozitul, dobanda acumulata va fi pierduta iar depozitul v-a fi eliberat in 3-5 zile lucratoare in contul dvs curent.
+            </p>
+            <div class="modal-buttons">
+                <button class="cancel-btn" onclick="closeBreakDepositModal()">Anulare</button>
+                <button class="continue-btn" onclick="showPasswordModal()">Continuare</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Confirmation Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: var(--unicredit-red); margin-bottom: 20px;">
+                Confirmați acțiunea
+            </h3>
+            <p style="margin-bottom: 20px;">
+                Introduceți parola pentru a confirma spargerea depozitului:
+            </p>
+            <div class="password-input-section">
+                <input type="password" id="confirmPassword" placeholder="Introduceți parola" maxlength="6">
+                <div class="error-message" id="passwordError" style="display: none; color: #e31837; margin-top: 10px;">
+                    Parolă incorectă. Încercați din nou.
+                </div>
+            </div>
+            <div class="modal-buttons" style="margin-top: 20px;">
+                <button class="cancel-btn" onclick="closePasswordModal()">Anulare</button>
+                <button class="continue-btn" onclick="confirmBreakDeposit()">Confirmă</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <i class="fas fa-check-circle" style="color: #28a745; font-size: 3rem; margin-bottom: 20px;"></i>
+                <h3 style="color: #28a745; margin-bottom: 20px;">Depozit spart cu succes</h3>
+                <p style="margin-bottom: 20px; line-height: 1.5;">
+                    Depozitul în valoare de <span id="depositAmount"></span> EUR va fi eliberat în contul dumneavoastră curent în 3-5 zile lucrătoare.
+                </p>
+                <button class="continue-btn" onclick="closeSuccessModal()" style="width: 100%;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentDepositAmount = '';
+        let currentInterestAmount = '';
+
+        function showBreakDepositModal(amount, interest) {
+            currentDepositAmount = amount;
+            currentInterestAmount = interest;
+            document.getElementById('breakDepositModal').style.display = 'block';
+        }
+
+        function closeBreakDepositModal() {
+            document.getElementById('breakDepositModal').style.display = 'none';
+        }
+
+        function showPasswordModal() {
+            document.getElementById('breakDepositModal').style.display = 'none';
+            document.getElementById('passwordModal').style.display = 'block';
+            document.getElementById('confirmPassword').focus();
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('confirmPassword').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        function confirmBreakDeposit() {
+            const password = document.getElementById('confirmPassword').value;
+            const errorDiv = document.getElementById('passwordError');
+            
+            if (password === '220804') {
+                // Hide password modal
+                document.getElementById('passwordModal').style.display = 'none';
+                
+                // Show success modal
+                document.getElementById('depositAmount').textContent = currentDepositAmount;
+                document.getElementById('successModal').style.display = 'block';
+                
+                // Reset form
+                document.getElementById('confirmPassword').value = '';
+                errorDiv.style.display = 'none';
+            } else {
+                errorDiv.style.display = 'block';
+                document.getElementById('confirmPassword').value = '';
+            }
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+            // Optionally redirect back to accounts page
+            window.location.href = 'accounts.html';
+        }
+
+        // Handle Enter key in password input
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('confirmPassword');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        confirmBreakDeposit();
+                    }
+                });
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = ['breakDepositModal', 'passwordModal', 'successModal'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    if (modalId === 'passwordModal') {
+                        document.getElementById('confirmPassword').value = '';
+                        document.getElementById('passwordError').style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html> 
