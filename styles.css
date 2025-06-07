@@ -136,6 +136,10 @@ body {
     border-bottom: 1px solid #eee;
 }
 
+.deposit-details .detail-row:last-child {
+    border-bottom: none;
+}
+
 .highlight {
     color: var(--unicredit-red);
 }
@@ -1433,4 +1437,79 @@ section {
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid #eee;
+}
+
+/* Break Deposit Button Styles */
+.break-deposit-btn {
+    width: 100%;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    margin-top: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.break-deposit-btn:hover {
+    background: #c82333;
+}
+
+.break-deposit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Modal Button Styles */
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.continue-btn {
+    flex: 1;
+    background: var(--unicredit-red);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.continue-btn:hover {
+    background: #c41430;
+}
+
+.cancel-btn {
+    flex: 1;
+    background: white;
+    color: var(--unicredit-red);
+    border: 1px solid var(--unicredit-red);
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+    background: var(--unicredit-red);
+    color: white;
+}
+
+/* Password Input Styles */
+.password-input-section input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
 } 
