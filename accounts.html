@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <div class="app-container">
         <!-- Header -->
@@ -27,7 +29,7 @@
         <!-- Main Balance Card -->
         <section class="balance-card" id="balanceCard" onclick="window.location.href='transactions.html'">
             <h2>Sold Curent</h2>
-            <div class="balance-amount" id="balanceDisplay">€9.85</div>
+            <div class="balance-amount" id="balanceDisplay">€12,409.85</div>
             <div class="account-number">
                 IBAN: IT60X0542811101000000123456
                 <button class="share-btn"><i class="fas fa-share-alt"></i></button>
@@ -88,7 +90,7 @@
                     </div>
                     <div class="detail-row highlight">
                         <span>Status Depozit</span>
-                        <span style="color: #28a745;">Activ</span>
+                        <span>Expirat</span>
                     </div>
                     <div class="detail-row">
                         <span>Dobânda Acumulată</span>
@@ -117,7 +119,7 @@
                     </div>
                     <div class="detail-row highlight">
                         <span>Status Depozit</span>
-                        <span style="color: #28a745;">Activ</span>
+                        <span>Expirat</span>
                     </div>
                     <div class="detail-row">
                         <span>Dobânda Acumulată</span>
@@ -159,10 +161,10 @@
 
     <script>
         // Update balance display
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const savedBalance = localStorage.getItem('currentBalance');
             if (savedBalance) {
-                document.getElementById('balanceDisplay').textContent = 
+                document.getElementById('balanceDisplay').textContent =
                     '€' + parseFloat(savedBalance).toFixed(2);
             }
 
@@ -173,7 +175,7 @@
             deposits.forEach(deposit => {
                 const depositElement = document.createElement('div');
                 depositElement.className = 'deposit-details new-deposit';
-                
+
                 const currentDate = new Date();
                 const approvalDate = new Date(currentDate.getTime() + (3 * 24 * 60 * 60 * 1000));
                 const maturityDate = new Date(currentDate.getTime() + (deposit.duration * 30 * 24 * 60 * 60 * 1000));
@@ -208,5 +210,5 @@
         });
     </script>
 </body>
-</html> 
 
+</html>

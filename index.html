@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body class="login-body">
     <div class="login-container">
         <div class="login-header">
@@ -20,7 +22,8 @@
                 <div class="welcome-text">
                     <h1>Bun venit!</h1>
                     <h2>Vrei să devii client?</h2>
-                    <p>Pentru că știm cât de important este timpul tău, poți obține acum contul tău curent în lei și Mobile Banking atașat.</p>
+                    <p>Pentru că știm cât de important este timpul tău, poți obține acum contul tău curent în lei și
+                        Mobile Banking atașat.</p>
                     <button class="apply-button">APLICĂ 100% ONLINE <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
@@ -28,7 +31,8 @@
             <div class="login-form">
                 <button class="activate-button">ACTIVEAZĂ</button>
                 <div class="pin-section">
-                    <input type="password" id="pin" maxlength="4" pattern="[0-9]*" inputmode="numeric" placeholder="Introdu PIN-ul">
+                    <input type="password" id="pin" maxlength="4" pattern="[0-9]*" inputmode="numeric"
+                        placeholder="Introdu PIN-ul">
                     <button class="login-button" onclick="validatePin()">
                         <i class="fas fa-arrow-right"></i>
                     </button>
@@ -44,7 +48,7 @@
         function validatePin() {
             const pin = document.getElementById('pin').value;
             const errorMessage = document.querySelector('.error-message');
-            
+
             if (pin === '2208') {
                 window.location.href = 'accounts.html';
             } else {
@@ -53,11 +57,12 @@
             }
         }
 
-        document.getElementById('pin').addEventListener('keypress', function(e) {
+        document.getElementById('pin').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 validatePin();
             }
         });
     </script>
 </body>
+
 </html>

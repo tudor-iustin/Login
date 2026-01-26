@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <div class="app-container">
         <header class="page-header">
@@ -18,7 +20,12 @@
 
         <section class="deposit-section">
             <h2>Depozite Active</h2>
-            
+            <!-- No active deposits -->
+        </section>
+
+        <section class="deposit-section">
+            <h2>Depozite Anterioare</h2>
+
             <div class="deposit-card">
                 <h3>Depozit la Termen</h3>
                 <div class="deposit-details">
@@ -40,16 +47,13 @@
                     </div>
                     <div class="detail-row highlight">
                         <span>Status Depozit</span>
-                        <span style="color: #28a745;">Activ</span>
+                        <span>Expirat</span>
                     </div>
                     <div class="detail-row">
                         <span>Dobânda Acumulată</span>
                         <span>800 EUR</span>
                     </div>
                 </div>
-                <button class="break-deposit-btn" onclick="showBreakDepositModal('6000', '800')">
-                    <i class="fas fa-exclamation-triangle"></i> Sparge Depozit
-                </button>
             </div>
 
             <div class="deposit-card">
@@ -73,22 +77,15 @@
                     </div>
                     <div class="detail-row highlight">
                         <span>Status Depozit</span>
-                        <span style="color: #28a745;">Activ</span>
+                        <span>Expirat</span>
                     </div>
                     <div class="detail-row">
                         <span>Dobânda Acumulată</span>
                         <span>600 EUR</span>
                     </div>
                 </div>
-                <button class="break-deposit-btn" onclick="showBreakDepositModal('5000', '600')">
-                    <i class="fas fa-exclamation-triangle"></i> Sparge Depozit
-                </button>
             </div>
-        </section>
 
-        <section class="deposit-section">
-            <h2>Depozite Anterioare</h2>
-            
             <div class="deposit-card">
                 <h3>Depozit la Termen</h3>
                 <div class="deposit-details">
@@ -134,7 +131,8 @@
                 <i class="fas fa-exclamation-triangle"></i> Atenție
             </h3>
             <p style="margin-bottom: 20px; line-height: 1.5;">
-                Aceasta actiune este iremediabila, daca decideti sa spargeti depozitul, dobanda acumulata va fi pierduta iar depozitul v-a fi eliberat in 3-5 zile lucratoare in contul dvs curent.
+                Aceasta actiune este iremediabila, daca decideti sa spargeti depozitul, dobanda acumulata va fi pierduta
+                iar depozitul v-a fi eliberat in 3-5 zile lucratoare in contul dvs curent.
             </p>
             <div class="modal-buttons">
                 <button class="cancel-btn" onclick="closeBreakDepositModal()">Anulare</button>
@@ -172,7 +170,8 @@
                 <i class="fas fa-check-circle" style="color: #28a745; font-size: 3rem; margin-bottom: 20px;"></i>
                 <h3 style="color: #28a745; margin-bottom: 20px;">Depozit spart cu succes</h3>
                 <p style="margin-bottom: 20px; line-height: 1.5;">
-                    Depozitul în valoare de <span id="depositAmount"></span> EUR va fi eliberat în contul dumneavoastră curent în 3-5 zile lucrătoare.
+                    Depozitul în valoare de <span id="depositAmount"></span> EUR va fi eliberat în contul dumneavoastră
+                    curent în 3-5 zile lucrătoare.
                 </p>
                 <button class="continue-btn" onclick="closeSuccessModal()" style="width: 100%;">OK</button>
             </div>
@@ -208,15 +207,15 @@
         function confirmBreakDeposit() {
             const password = document.getElementById('confirmPassword').value;
             const errorDiv = document.getElementById('passwordError');
-            
+
             if (password === '220804') {
                 // Hide password modal
                 document.getElementById('passwordModal').style.display = 'none';
-                
+
                 // Show success modal
                 document.getElementById('depositAmount').textContent = currentDepositAmount;
                 document.getElementById('successModal').style.display = 'block';
-                
+
                 // Reset form
                 document.getElementById('confirmPassword').value = '';
                 errorDiv.style.display = 'none';
@@ -233,10 +232,10 @@
         }
 
         // Handle Enter key in password input
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const passwordInput = document.getElementById('confirmPassword');
             if (passwordInput) {
-                passwordInput.addEventListener('keypress', function(e) {
+                passwordInput.addEventListener('keypress', function (e) {
                     if (e.key === 'Enter') {
                         confirmBreakDeposit();
                     }
@@ -245,7 +244,7 @@
         });
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modals = ['breakDepositModal', 'passwordModal', 'successModal'];
             modals.forEach(modalId => {
                 const modal = document.getElementById(modalId);
@@ -260,4 +259,5 @@
         }
     </script>
 </body>
-</html> 
+
+</html>
